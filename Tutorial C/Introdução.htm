@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Algoritmos e Programação de Computadores
+    - Introdução à linguagem C
+  </title>
+
+  <meta name="keywords" content="MC102, Algoritmos e Programação de Computadores, Python">
+  <meta name="description" content="Página da disciplina de MC102 para turma QR">
+  <meta name="author" content="Lehilton Pedrosa">
+
+  <!-- Bootstrap core CSS -->
+  <link href="./Introdução_files/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Theme css -->
+  <link href="./Introdução_files/main.min.css" rel="stylesheet">
+
+  <!-- Prism -->
+  <!-- <link href="../dist/vendor/prism/prism.css" rel="stylesheet" /> -->
+</head>
+<body>
+
+  
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top is-fixed is-invisible" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="https://ic.unicamp.br/~lehilton/mc102qr/index.html">MC102</a>
+
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i>☰</i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item top back-to-top-link">
+          <a class="nav-link" href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>topo</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/index.html">voltar</a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url(&#39;../images/home-bg.jpg&#39;)">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+
+          <h1>Introdução à linguagem C</h1>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+
+
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <h1 id="c-para-programadores-de-python">C para programadores de Python</h1>
+<p><em>por Carl Burch, Hendrix College, agosto de 2011<br>
+traduzido para a disciplina de MC202, junho de 2018</em></p>
+<p><img src="./Introdução_files/cc.png" alt="CC"></p>
+<p>C para programadores de Python por <a href="http://www.cburch.com/">Carl Burch</a> está
+licenciado sob uma <a href="https://creativecommons.org/licenses/by-sa/3.0/us/">Licença Creative Commons Atribuição-Compartilha Igual 3.0
+dos Estados Unidos</a> .</p>
+<p>Baseado em um trabalho em
+<a href="http://www.toves.org/books/cpy/"><em>www.toves.org/books/cpy/</em></a> .</p>
+<h2 id="conteudo">Conteúdo</h2>
+
+<ul class="toc toc-h1">
+  <li>
+    <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#1-construindo-um-programa-simples">1. Construindo um programa simples</a>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#1-1-compiladores-versus-interpretadores">1.1. Compiladores versus interpretadores</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#1-2-declaracoes-de-variaveis">1.2. Declarações de Variáveis</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#1-3-espaco-em-branco">1.3. Espaço em branco</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#1-4-a-funcao-printf">1.4. A função printf()</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#1-5-funcoes">1.5. Funções</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul class="toc toc-h1">
+  <li>
+    <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#2-construcoes-de-nivel-de-instrucao">2. Construções de nível de instrução</a>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#2-1-operadores">2.1. Operadores</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#2-2-tipos-basicos">2.2. Tipos básicos</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#2-3-chaves">2.3. Chaves</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#2-4-instrucoes">2.4. Instruções</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#2-5-vetores">2.5. Vetores</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#2-6-comentarios">2.6. Comentários</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul class="toc toc-h1">
+  <li>
+    <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#3-bibliotecas">3. Bibliotecas</a>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#3-1-prototipos-de-funcao">3.1. Protótipos de função</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#3-2-arquivos-de-cabecalho">3.2. Arquivos de cabeçalho</a>
+      </li>
+    </ul>
+    <ul class="toc toc-h2">
+      <li>
+        <a href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/00-intro.html#3-3-constantes">3.3. Constantes</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>Nos anos setenta, nos laboratórios da Bell, Ken Thompson projetou a
+linguagem de programação C para ajudar no desenvolvimento do sistema
+operacional UNIX. Seguindo a uma série de eventos históricos, poucos
+intencionais, o UNIX cresceu de um pequeno projeto de pesquisa para um
+sistema operacional popular de força industrial. E, junto com o sucesso
+do UNIX, veio a linguagem C, já que o sistema operacional foi projetado
+para que os programas C pudessem acessar todos os seus recursos. À
+medida em que mais programadores adquiriram experiência com C, eles
+começaram a usá-lo também em outras plataformas, de modo que ele se
+tornou uma das principais linguagens para o desenvolvimento de software
+no final dos anos 80.</p>
+<p>Enquanto hoje C não desfruta do amplo domínio que já teve, sua
+influência é tão grande que muitas outras linguagens foram projetadas
+para se parecer com ele, incluindo C++, C#, Objective-C, Java,
+JavaScript, PHP e Perl. Saber C é em si uma coisa boa — é um excelente
+ponto de partida para se relacionar mais diretamente com o que um
+computador faz. Mas aprender C também é um bom ponto de partida para se
+familiarizar com todos esses outros idiomas.</p>
+<p>Este documento é direcionado a pessoas que aprenderam programação em
+Python e que desejam aprender sobre C. “A influência de C em Python é
+considerável”, nas palavras do inventor de Python, Guido van Rossum
+(“Uma Introdução a Python para Programadores UNIX/C”, 1993). Então,
+aprender Python é um bom primeiro passo para aprender C.</p>
+<h1 id="1-construindo-um-programa-simples">1. Construindo um programa simples</h1>
+<p>Começaremos com vários princípios gerais, trabalhando para construir um
+programa em C completo — mas limitado — até o final da Seção 1.</p>
+<h2 id="1-1-compiladores-versus-interpretadores">1.1. Compiladores versus interpretadores</h2>
+<p>Uma grande diferença entre C e Python é simplesmente como você executa
+programas escritos nos dois idiomas. Com programas em C, você geralmente
+usa um <em>compilador</em> quando está pronto para que um programa em C
+execute. Em contraste, com Python, você normalmente usa um
+<em>interpretador</em>. Um <strong>compilador</strong> gera um arquivo contendo a tradução
+do programa no código nativo da máquina. O compilador na verdade não
+executa o programa; em vez disso, você primeiro executa o compilador
+para criar um executável nativo e, em seguida, executa o executável
+gerado. Assim, depois de escrever um programa em C, executá-lo é um
+processo de duas etapas.</p>
+<pre class="highlightlanguage-console"><span style="color: #000080; font-weight: bold">me@computer:~$</span> gcc meu_programa.c
+<span style="color: #000080; font-weight: bold">me@computer:~$</span> ./a.out
+<span style="color: #888888">GCD: 8</span>
+</pre><p>No primeiro comando (<code class="language-c">gcc meu_programa.c</code>), invocamos o compilador,
+chamado <code class="language-c">gcc</code> . O compilador lê o arquivo <code class="language-c">meu_programa.c</code>, no qual
+salvamos nosso código C e gera um novo arquivo chamado a.out contendo
+uma tradução desse código no código binário usado pela máquina. No
+segundo comando (<code class="language-c">.<span style="color: #666666">/</span>a.out</code>), dizemos ao computador para executar este
+código binário. Quando está executando o programa, o computador não tem
+idéia de que <code class="language-c">a.out</code> acabou de ser criado a partir de algum programa em C: ele simplesmente executa cegamente o código encontrado no arquivo a.out, da mesma forma que executa cegamente o código encontrado no arquivo gcc
+arquivo em resposta ao primeiro comando.</p>
+<p>Em contraste, um <strong>interpretador</strong> lê o programa escrito pelo usuário e
+o executa diretamente. Isso remove uma etapa do processo de execução,
+mas um compilador tem a vantagem de gerar um executável que pode ser
+executado da mesma forma que a maioria dos outros aplicativos da máquina
+e isso pode levar a tempos de execução consideravelmente mais rápidos.</p>
+<p>Ser compilada ou interpretada tem algumas consequências importantes no
+projeto de uma linguagem de programação. C é projetado de tal forma que
+o compilador possa deduzir tudo aquilo de que precisa para traduzir o
+programa C sem realmente executar o programa.</p>
+<h2 id="1-2-declaracoes-de-variaveis">1.2. Declarações de Variáveis</h2>
+<p>Entre as informações de que C precisa que os programadores forneçam ao
+compilador, um dos exemplos mais importantes ​​é que C requer
+<strong>declarações de variáveis</strong>, informando para o compilador cada uma
+das variáveis antes que elas sejam realmente usadas. Isso é típico de
+muitas linguagens de programação proeminentes, particularmente entre
+aquelas que devem ser compiladas antes de serem executadas.</p>
+<p>Em C, a declaração da variável define o <strong>tipo</strong> da variável,
+especificando se ela é um número inteiro (<code class="language-c"><span style="color: #B00040">int</span></code>), um número de ponto
+flutuante (<code class="language-c"><span style="color: #B00040">double</span></code>), um caractere (<code class="language-c"><span style="color: #B00040">char</span></code>) ou algum outro tipo que
+estudaremos mais tarde. Uma vez que você declara que uma variável é de
+um tipo particular, você não pode mudar seu tipo: se a variável <code class="language-c">x</code> é
+declarada como do tipo <code class="language-c"><span style="color: #B00040">double</span></code> e você realiza a atribuição <code class="language-c">x <span style="color: #666666">=</span> <span style="color: #666666">3</span></code>,
+então <code class="language-c">x</code> irá guardar o valor de ponto flutuante <code class="language-c"><span style="color: #666666">3.0</span></code> ao invés do inteiro
+<code class="language-c"><span style="color: #666666">3</span></code>. Você pode, se desejar, imaginar que a variável <code class="language-c">x</code> é uma caixa que é
+capaz de guardar apenas valores <code class="language-c"><span style="color: #B00040">double</span></code>; se você tentar colocar algo
+diferente (como o valor inteiro <code class="language-c"><span style="color: #666666">3</span></code>), o compilador converterá esse valor
+em um valor <code class="language-c"><span style="color: #B00040">double</span></code> de forma com que ele caiba na caixa.</p>
+<p>Declarar uma variável é bastante simples: você insere o tipo da
+variável, alguns espaços em branco, o nome da variável e um ponto e
+vírgula:</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">double</span> x
+</pre><p>Em C, as declarações de variáveis devem ficar no topo da função em que
+são usadas.</p>
+<p>Se você se esquecer de declarar uma variável, o compilador se recusará a
+compilar o programa, i.e., ele não vai compilar um programa em que uma
+variável é usada, mas não é declarada. A mensagem de erro indicará a
+linha dentro do programa, o nome da variável e uma mensagem como
+“símbolo não declarado”.</p>
+<p>Para um programador Python, parece difícil incluir essas declarações de
+variáveis ​​em um programa, embora isso fique mais fácil com mais
+prática. Os programadores de C tendem a sentir que as declarações de
+variáveis compensam esse pequeno trabalho extra. A grande vantagem é que
+o compilador irá identificar automaticamente sempre que um nome de
+variável for digitado incorretamente e apontar diretamente para a linha
+onde o nome está escrito incorretamente. Isso é muito mais conveniente
+do que executar um programa e descobrir que ele está errado porque em
+algum lugar o nome da variável contém erros ortográficos.</p>
+<h2 id="1-3-espaco-em-branco">1.3. Espaço em branco</h2>
+<p>Em Python, os espaços em branco como tabs e quebras de linhas são
+importantes: você separa suas instruções colocando-as em linhas
+separadas e indica a extensão de um bloco (como o corpo de uma instrução <code class="language-c"><span style="color: #008000; font-weight: bold">while</span></code> ou <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code>) usando o recuo. Esses usos do espaço em branco são
+idiossincrasias de Python. (Na verdade, não são muitas as linguagens que
+usam espaços para separar blocos.)</p>
+<p>Como a maioria das linguagens de programação, C não usa espaço em
+branco, exceto para separar palavras. A maioria das instruções é
+terminada com um ponto e vírgula <code class="language-c">;</code> e blocos de instruções são
+indicados usando um par de chaves, <code class="language-c">{</code> e <code class="language-c">}</code>. Aqui está um fragmento de
+exemplo de um programa em C, com seu equivalente em Python.</p>
+<div class="row">
+<div class="col-12">
+<p><strong>Figura 1:</strong> fragmento C e equivalente em Python</p>
+</div>
+<div class="col-12 col-md-6">
+<p><strong>Fragmento em C</strong></p>
+<pre class="highlightlanguage-c">disc <span style="color: #666666">=</span> b <span style="color: #666666">*</span> b <span style="color: #666666">-</span> <span style="color: #666666">4</span> <span style="color: #666666">*</span> a <span style="color: #666666">*</span> c;
+<span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {
+    num_sol <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+} <span style="color: #008000; font-weight: bold">else</span> {
+    t0 <span style="color: #666666">=</span> <span style="color: #666666">-</span>b <span style="color: #666666">/</span> a;
+    <span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+        sol0 <span style="color: #666666">=</span> t0 <span style="color: #666666">/</span> <span style="color: #666666">2</span>;
+    } <span style="color: #008000; font-weight: bold">else</span> {
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">2</span>;
+        t1 <span style="color: #666666">=</span> sqrt(disc) <span style="color: #666666">/</span> a;
+        sol0 <span style="color: #666666">=</span> (t0 <span style="color: #666666">+</span> t1) <span style="color: #666666">/</span> <span style="color: #666666">2</span>;
+        sol1 <span style="color: #666666">=</span> (t0 <span style="color: #666666">-</span> t1) <span style="color: #666666">/</span> <span style="color: #666666">2</span>;
+    }
+}
+</pre></div>
+<div class="col-12 col-md-6">
+<p><strong>Equivalente em Python</strong></p>
+<pre class="highlightlanguage-python">disc <span style="color: #666666">=</span> b <span style="color: #666666">*</span> b <span style="color: #666666">-</span> <span style="color: #666666">4</span> <span style="color: #666666">*</span> a <span style="color: #666666">*</span> c
+<span style="color: #008000; font-weight: bold">if</span> disc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>:
+    num_sol <span style="color: #666666">=</span> <span style="color: #666666">0</span>
+<span style="color: #008000; font-weight: bold">else</span>:
+    t0 <span style="color: #666666">=</span> <span style="color: #666666">-</span>b <span style="color: #666666">/</span> a
+    <span style="color: #008000; font-weight: bold">if</span> disc <span style="color: #666666">==</span> <span style="color: #666666">0</span>:
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+        sol0 <span style="color: #666666">=</span> t0 <span style="color: #666666">/</span> <span style="color: #666666">2</span>
+    <span style="color: #008000; font-weight: bold">else</span>:
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">2</span>
+        t1 <span style="color: #666666">=</span> disc <span style="color: #666666">**</span> <span style="color: #666666">0.5</span> <span style="color: #666666">/</span> a
+        sol0 <span style="color: #666666">=</span> (t0 <span style="color: #666666">+</span> t1) <span style="color: #666666">/</span> <span style="color: #666666">2</span>
+        sol1 <span style="color: #666666">=</span> (t0 <span style="color: #666666">-</span> t1) <span style="color: #666666">/</span> <span style="color: #666666">2</span>
+</pre></div>
+</div>
+<p>O programa C à esquerda é como <em>eu</em> o escreveria. No entanto, o espaço
+em branco é insignificante, então o computador ficaria tão feliz quanto
+se eu tivesse escrito o seguinte.</p>
+<pre class="highlightlanguage-c">disc<span style="color: #666666">=</span>b<span style="color: #666666">*</span>b<span style="color: #666666">-4*</span>a<span style="color: #666666">*</span>c;<span style="color: #008000; font-weight: bold">if</span>(disc<span style="color: #666666">&lt;0</span>){
+num_sol<span style="color: #666666">=0</span>;}<span style="color: #008000; font-weight: bold">else</span>{t0<span style="color: #666666">=-</span>b<span style="color: #666666">/</span>a;<span style="color: #008000; font-weight: bold">if</span>(
+disc<span style="color: #666666">==0</span>){num_sol<span style="color: #666666">=1</span>;sol0<span style="color: #666666">=</span>t0<span style="color: #666666">/2</span>
+;}<span style="color: #008000; font-weight: bold">else</span>{num_sol<span style="color: #666666">=2</span>;t1<span style="color: #666666">=</span>sqrt(disc<span style="color: #666666">/</span>a;
+sol0<span style="color: #666666">=</span>(t0<span style="color: #666666">+</span>t1)<span style="color: #666666">/2</span>;sol1<span style="color: #666666">=</span>(t0<span style="color: #666666">-</span>t1)<span style="color: #666666">/2</span>;}}
+</pre><p>Enquanto o computador pode estar feliz com isso, nenhum humano sensato
+preferiria essa versão. Portanto, um programador competente tende a ser
+muito cuidadoso com os espaços em branco para indicar a estrutura do
+programa.</p>
+<p>(Há algumas exceções à regra de ignorar o espaço em branco: o espaço é
+frequentemente importante para separar palavras de símbolos. O fragmento
+<code class="language-c">intmain</code> é diferente do fragmento <code class="language-c"><span style="color: #B00040">int</span> main</code>; da mesma forma, o
+fragmento <code class="language-c">a<span style="color: #666666">++</span> <span style="color: #666666">+</span> <span style="color: #666666">1</span></code> é diferente do fragmento <code class="language-c">a<span style="color: #666666">+</span> <span style="color: #666666">+</span> <span style="color: #666666">+1</span></code>.)</p>
+<h2 id="1-4-a-funcao-printf">1.4. A função printf()</h2>
+<p>Um ingrediente importante para escrever programas C úteis é exibir os
+resultados para o usuário ver, o que você realizaria usando <code class="language-c">print</code> em
+Python. Em C, você usa em <code class="language-c">printf()</code>. Essa é na verdade uma função — que
+uma das funções mais úteis da biblioteca padrão de funções da linguagem
+C.</p>
+<p>A maneira com que os parâmetros de <code class="language-c">printf()</code> funcionam é um pouco
+complicada, mas é também bastante conveniente: o primeiro parâmetro é
+uma string que especifica o formato do texto que se deseja imprimir e os
+seguintes parâmetros indicam os valores a serem impressos. A maneira
+mais fácil de entender isso é olhar para um exemplo.</p>
+<pre class="highlightlanguage-c">printf(<span style="color: #BA2121">"# solns: %d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>, num_sol);
+</pre><p>Esta linha diz para imprimir usando <code class="language-c"><span style="color: #BA2121">"#solns: %d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span></code> como a string de
+formatação. A função <code class="language-c">printf()</code> percorre essa string de formato,
+imprimindo os caracteres <code class="language-c"><span style="color: #BA2121">"# solns: "</span></code> antes de chegar ao caractere de
+porcentagem <code class="language-c"><span style="color: #BA2121">'%'</span></code>. O caractere de porcentagem é considerado especial para
+a função <code class="language-c">printf()</code>: ele diz para imprimir um valor especificado em um
+parâmetro subsequente. Nesse caso, uma letra minúscula <em>d</em> acompanha o
+caractere de porcentagem, indicando para exibir o parâmetro do tipo
+<code class="language-c"><span style="color: #B00040">int</span></code> na forma decimal. (O <em>d</em> representa decimal.) Então, quando
+<code class="language-c">printf()</code> atinge <code class="language-c"><span style="color: #BA2121">"%d"</span></code>, ele olha para o valor do seguinte parâmetro (vamos
+imaginar <code class="language-c">num_sol</code> vale <code class="language-c"><span style="color: #666666">2</span></code> neste exemplo) e exibe esse valor. Em seguida,
+continua pela string de formatação, neste caso, exibindo um caractere de
+quebra de linha. Portanto, o usuário vê a seguinte linha de saída:</p>
+<pre class="highlightlanguage-c"><span style="color: #BC7A00"># solns: 2</span>
+</pre><p>Como Python, C permite incluir caracteres de escape em uma string usando
+uma barra invertida. A sequência <code class="language-c"><span style="color: #BA2121">'\n'</span></code> representa o caractere de quebra
+de linha — isto é, o caractere que representa uma quebra de linha. Da
+mesma forma, <code class="language-c"><span style="color: #BA2121">'\t'</span></code> representa o caractere de tabulação, <code class="language-c"><span style="color: #BA2121">'\"'</span></code> representa
+o caractere de aspas duplas e <code class="language-c"><span style="color: #BA2121">'\\'</span></code> representa o caractere de barra
+invertida. Esses caracteres de escape fazem parte da sintaxe C e não
+fazem parte da função <code class="language-c">printf()</code>. (Isso é, a string que a <code class="language-c">printf()</code> função
+recebe na verdade contém uma quebra de linha, não uma barra invertida
+seguida por um <em>n</em>. Assim, a natureza da barra invertida é
+fundamentalmente diferente do caractere de porcentagem, que <code class="language-c">printf()</code>
+veria e interpretaria em tempo de execução.)</p>
+<p>Vamos ver outro exemplo.</p>
+<pre class="highlightlanguage-c">printf(<span style="color: #BA2121">"# solns: %d"</span>, num_sol);
+printf(<span style="color: #BA2121">"solns: %f, %f"</span>, sol0, sol1);
+</pre><p>Vamos supor que <code class="language-c">num_sol</code> tenha valor 2, <code class="language-c">sol0</code> tenha valor 4 e <code class="language-c">sol1</code> tenha
+valor 1. Quando o computador executar essas duas chamadas à função
+printf(), ele primeiro executará a primeira linha, que exibe <code class="language-c"><span style="color: #BC7A00"># solns: 2</span></code> e, em seguida, a segunda, que exibe <code class="language-c"><span style="color: #A0A000">solns</span>: <span style="color: #666666">4.0</span>, <span style="color: #666666">1.0</span></code>, conforme
+ilustrado abaixo.</p>
+<pre class="highlight"># solns: 2solns: 4,0, 1,0
+</pre><p>Observe que <code class="language-c">printf()</code> exibe apenas o que é dito a ele, sem adicionar
+espaços extras ou quebras de linha. Se quisermos que uma quebra de
+linha seja inserida entre as duas partes da saída, precisaríamos incluir
+<code class="language-c"><span style="border: 1px solid #FF0000">\</span>n</code> no final da primeira string de formatação.</p>
+<p>A segunda chamada <code class="language-c">printf()</code> neste exemplo ilustra como a função pode
+imprimir vários valores de parâmetro. Na verdade, neste caso não há
+nenhuma razão para não termos combinado as duas chamadas a <code class="language-c">printf()</code> em
+uma.</p>
+<pre class="highlightlanguage-c">printf(<span style="color: #BA2121">"# solns: %dsolns: %f, %f"</span>,
+    num_sol, sol0, sol1);
+</pre><p>Aliás, a função <code class="language-c">printf()</code> exibe <code class="language-c"><span style="color: #666666">4.0</span></code> ao invés de simplesmente <code class="language-c"><span style="color: #666666">4</span></code>,
+porque a string de formato usa <code class="language-c"><span style="color: #666666">%</span>f</code>, que diz para interpretar os
+parâmetros como números de ponto flutuante. Se você quiser exibir
+apenas <code class="language-c"><span style="color: #666666">4</span></code>, você pode se sentir tentado a usar "<code class="language-c"><span style="color: #666666">%</span>d</code>. Mas isso não
+funcionaria, porque <code class="language-c">printf()</code> iria interpretar a representação binária
+usada para um número de ponto flutuante como uma representação binária
+para um número inteiro, e esses tipos são armazenados de maneiras
+completamente diferentes! No meu computador, substituir cada <code class="language-c"><span style="color: #666666">%</span>f</code> por
+<code class="language-c"><span style="color: #666666">%</span>d</code> leva à seguinte saída:</p>
+<pre class="highlight"># solns: 2solns: 0, 1074790400
+</pre><p>Há diversos caracteres que podem seguir o caractere de porcentagem na
+string de formatação.</p>
+<ul>
+<li><code class="language-c"><span style="color: #666666">%</span>d</code>, como já vimos, diz para imprimir um valor do tipo <code class="language-c"><span style="color: #B00040">int</span></code> na
+forma decimal.</li>
+<li><code class="language-c"><span style="color: #666666">%</span>x</code> diz para imprimir um valor do tipo <code class="language-c"><span style="color: #B00040">int</span></code> em formato
+hexadecimal.</li>
+<li><code class="language-c"><span style="color: #666666">%</span>f</code> diz para imprimir um valor do tipo <code class="language-c"><span style="color: #B00040">double</span></code> em forma de ponto
+decimal.</li>
+<li><code class="language-c"><span style="color: #666666">%</span>e</code> diz para imprimir um valor do tipo <code class="language-c"><span style="color: #B00040">double</span></code> em notação
+científica (por exemplo, <code class="language-c"><span style="color: #666666">3.000000e8</span></code>).</li>
+<li><code class="language-c"><span style="color: #666666">%</span>c</code> diz para imprimir um valor do tipo <code class="language-c"><span style="color: #B00040">char</span></code>.</li>
+<li><code class="language-c"><span style="color: #666666">%</span>s</code> diz para imprimir uma string. Não há nenhum tipo de variável para
+representar uma string, mas C suporta alguns recursos para string
+usando vetores de caracteres. Vamos adiar a discussão dessas
+propriedades para depois de discutirmos ponteiros, pois entender
+strings depende de alguns conceitos mais complexos que ainda não
+vimos.</li>
+</ul>
+<p>Você também pode incluir um número entre o caractere de porcentagem e o
+descritor de formato como em <code class="language-c"><span style="color: #666666">%10</span>d</code>, que informa <code class="language-c">printf()</code> para
+justificar à direita um número inteiro decimal em dez colunas.</p>
+<h2 id="1-5-funcoes">1.5. Funções</h2>
+<p>Ao contrário de Python, todo o código em C deve estar aninhado dentro
+das funções e as funções não podem ser aninhadas umas nas outras. Assim,
+a estrutura geral de um programa em C é tipicamente muito direta: é uma
+lista de definições de funções, uma após a outra, cada uma contendo uma
+lista de instruções a serem executadas quando a função é chamada.</p>
+<p>Aqui está um exemplo simples de uma definição de função:</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">double</span> <span style="color: #0000FF">expon</span>(<span style="color: #B00040">double</span> b, <span style="color: #B00040">int</span> e) {
+    <span style="color: #008000; font-weight: bold">if</span> (e <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">1.0</span>;
+    } <span style="color: #008000; font-weight: bold">else</span> {
+        <span style="color: #008000; font-weight: bold">return</span> b <span style="color: #666666">*</span> expon(b, e <span style="color: #666666">-</span> <span style="color: #666666">1</span>);
+    }
+}
+</pre><p>Uma função em C é definida nomeando o tipo de retorno (<code class="language-c"><span style="color: #B00040">double</span></code> neste
+exemplo, porque a função devolve um resultado de tipo ponto flutuante),
+seguido pelo nome da função (<code class="language-c">expon</code>), seguido por um par de parênteses
+listando os parâmetros. Cada parâmetro é descrito incluindo o tipo do
+parâmetro e o nome do parâmetro. Depois da lista de parâmetros entre
+parênteses, deve vir um par de chaves, no qual você aninha o corpo da
+função.</p>
+<p>Se você tiver uma função que não tenha nenhum valor de retorno, você
+deve escrever <code class="language-c"><span style="color: #B00040">void</span></code> no lugar do tipo de retorno.</p>
+<p>Programas têm uma função especial chamada <code class="language-c">main</code>, cujo tipo de retorno é
+um inteiro. Esta função é o “ponto de partida” do programa: o computador
+chama essencialmente a função <code class="language-c">main</code> do programa quando quiser executar o
+programa. O valor de retorno inteiro é pode ser ignorado em grande parte
+das vezes; assim, sempre retornaremos 0 ao invés de nos preocuparmos
+sobre como o valor de retorno pode ser usado.</p>
+<p>Estamos agora em posição de apresentar um programa C completo,
+juntamente com seu equivalente em Python.</p>
+<div class="row">
+<div class="col-12">
+<p><strong>Figura 2:</strong> Um programa C completo e um equivalente em Python</p>
+</div>
+<div class="col-12 col-md-6">
+<p><strong>Programa em C</strong></p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">int</span> <span style="color: #0000FF">gcd</span>(<span style="color: #B00040">int</span> a, <span style="color: #B00040">int</span> b) {
+  <span style="color: #008000; font-weight: bold">if</span> (b <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+    <span style="color: #008000; font-weight: bold">return</span> a;
+  } <span style="color: #008000; font-weight: bold">else</span> {
+    <span style="color: #008000; font-weight: bold">return</span> gcd(b, a <span style="color: #666666">%</span> b);
+  }
+}
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>() {
+  printf(<span style="color: #BA2121">"GCD: %d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>,
+    gcd(<span style="color: #666666">24</span>, <span style="color: #666666">40</span>));
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+<div class="col-12 col-md-6">
+<p><strong>Programa em Python</strong></p>
+<pre class="highlightlanguage-python"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">gcd</span>(a, b):
+  <span style="color: #008000; font-weight: bold">if</span> b <span style="color: #666666">==</span> <span style="color: #666666">0</span>:
+    <span style="color: #008000; font-weight: bold">return</span> a
+  <span style="color: #008000; font-weight: bold">else</span>:
+    <span style="color: #008000; font-weight: bold">return</span> gcd(b, a <span style="color: #666666">%</span> b)
+
+<span style="color: #008000">print</span>(<span style="color: #BA2121">"GCD: "</span> <span style="color: #666666">+</span> <span style="color: #008000">str</span>(gcd(<span style="color: #666666">24</span>, <span style="color: #666666">40</span>)))
+</pre></div>
+</div>
+<p>Como você pode ver, o programa C consiste em duas definições de função.
+Em contraste com o programa Python, onde a linha que contém <code class="language-c">print</code> existe fora de qualquer definição de função, o programa C requer
+<code class="language-c">printf()</code> esteja na função main do programa, já que é onde colocamos todo
+o código de nível superior que deve ser concluído quando o programa é
+executado.</p>
+<h1 id="2-construcoes-de-nivel-de-instrucao">2. Construções de nível de instrução</h1>
+<p>Agora que vimos como construir um programa completo, vamos aprender o
+universo do que podemos fazer dentro de uma função C, através das
+diversas formas de escrever instruções na linguagem de programação C.</p>
+<h2 id="2-1-operadores">2.1. Operadores</h2>
+<p>Um <strong>operador</strong> é algo que podemos usar em expressões aritméticas, como
+um sinal de mais '<code class="language-c"><span style="color: #666666">+</span></code>' ou um teste de igualdade '<code class="language-c"><span style="color: #666666">==</span></code>'. Os operadores em C
+parecerão familiares, uma vez que o criador de Python, Guido van Rossum,
+escolheu começar a partir da lista de operadores de C; mas existem
+algumas diferenças importantes.</p>
+<div class="row">
+<div class="col-12">
+<p><strong>Figura 3:</strong> Principais operadores em C e Python</p>
+</div>
+<div class="col-12 col-md-6">
+<p><strong>Precedência de operador em C</strong></p>
+<p><code class="language-c"><span style="color: #666666">++</span> <span style="color: #666666">--</span></code> (postfix)<br>
+<code class="language-c"><span style="color: #666666">+</span> <span style="color: #666666">-</span> <span style="color: #666666">!</span></code> (operadores unários)<br>
+<code class="language-c"><span style="color: #666666">*</span> <span style="color: #666666">/</span> <span style="color: #666666">%</span></code><br>
+<code class="language-c"><span style="color: #666666">+</span> <span style="color: #666666">-</span></code> (operadores unários)<br>
+<code class="language-c"><span style="color: #666666">&lt;</span> <span style="color: #666666">&gt;</span> <span style="color: #666666">&lt;=</span> <span style="color: #666666">&gt;=</span></code><br>
+<code class="language-c"><span style="color: #666666">==</span> <span style="color: #666666">!=</span></code><br>
+<code class="language-c"><span style="color: #666666">&amp;&amp;</span></code><br>
+<code class="language-c"><span style="color: #666666">||</span></code><br>
+<code class="language-c"><span style="color: #666666">=</span> <span style="color: #666666">+=</span> <span style="color: #666666">-=</span> <span style="color: #666666">*=</span> <span style="color: #666666">/=</span> <span style="color: #666666">%=</span></code></p>
+</div>
+<div class="col-12 col-md-6">
+<p><strong>Precedência de operador em Python</strong></p>
+<p><code class="language-c"><span style="color: #666666">**</span></code><br>
+<code class="language-c"><span style="color: #666666">+</span> <span style="color: #666666">-</span></code> (operadores unários)<br>
+<code class="language-c"><span style="color: #666666">*</span> <span style="color: #666666">/</span> <span style="color: #666666">%</span> <span style="color: #408080; font-style: italic">//</span></code><br>
+<code class="language-c"><span style="color: #666666">+</span> <span style="color: #666666">-</span></code> (operadores binários)<br>
+<code class="language-c"><span style="color: #666666">&lt;</span> <span style="color: #666666">&gt;</span> <span style="color: #666666">&lt;=</span> <span style="color: #666666">&gt;=</span> <span style="color: #666666">==</span> <span style="color: #666666">!=</span></code><br>
+<code class="language-c">not</code><br>
+<code class="language-c">and</code><br>
+<code class="language-c">or</code></p>
+</div>
+</div>
+<p>Algumas distinções importantes:</p>
+<ul>
+<li>
+<p>C não possui um operador de exponenciação como o operador <code class="language-c"><span style="color: #666666">**</span></code> de
+Python . Para realizar exponenciação em C, você precisará usar a
+função de biblioteca <code class="language-c">pow()</code>. Por exemplo, a expressão <code class="language-c">pow(<span style="color: #666666">1.1</span>, <span style="color: #666666">2.0</span>)</code>
+calcula 1,1².</p>
+</li>
+<li>
+<p>C usa símbolos em vez de palavras para as operações booleanas E
+(<code class="language-c"><span style="color: #666666">&amp;&amp;</span></code>), OU (<code class="language-c"><span style="color: #666666">||</span></code>) e NÃO (<code class="language-c"><span style="color: #666666">!</span></code>).</p>
+</li>
+<li>
+<p>O nível de precedência de NÃO (o operador <code class="language-c"><span style="color: #666666">!</span></code>) é muito alto em C.
+Isso quase nunca é desejado, então você acaba precisando de
+parênteses na maioria das vezes que deseja usar o operador !.</p>
+</li>
+<li>
+<p>Em C, a atribuição de variável é feita com um operador, enquanto em
+Python a atribuição como uma instrução. O valor devolvido pelo
+operador de atribuição é o valor atribuído. Uma consequência do
+projeto de C é que uma atribuição pode legalmente ser parte de outra
+instrução.</p>
+<pre class="highlightlanguage-c"><span style="color: #008000; font-weight: bold">while</span> ((a <span style="color: #666666">=</span> getchar()) <span style="color: #666666">!=</span> EOF)
+</pre><p>Aqui, atribuímos o valor devolvido por <code class="language-c">getchar()</code> à variável a e, em
+seguida, testamos se o valor atribuído a a corresponde à constante <code class="language-c">EOF</code>,
+que é usada para decidir se se deve repetir o laço novamente. Muitas pessoas
+afirmam que esse estilo de programação é extraordinariamente ruim; outros
+acham que ele é conveniente. Python, é claro, foi projetado para que uma
+atribuição ocorra em uma instrução separada, portanto, as atribuições de
+aninhamento dentro <code class="language-c"><span style="color: #008000; font-weight: bold">while</span></code> da condição de uma instrução são ilegais em Python.</p>
+</li>
+<li>
+<p>Operadores de C <code class="language-c"><span style="color: #666666">++</span></code> e <code class="language-c"><span style="color: #666666">--</span></code> servem para incrementar e decrementar uma
+variável. Assim, a instrução <code class="language-c">i<span style="color: #666666">++</span></code> é uma forma mais curta de
+escrever <code class="language-c">i <span style="color: #666666">=</span> i <span style="color: #666666">+</span> <span style="color: #666666">1</span></code> (ou <code class="language-c">i <span style="color: #666666">+=</span> <span style="color: #666666">1</span></code>).</p>
+</li>
+<li>
+<p>O operador de divisão / de C faz divisão inteira se ambos os lados
+do operador tiverem um tipo <code class="language-c"><span style="color: #B00040">int</span></code>; isto é, qualquer resto da
+divisão é ignorado. Assim, em C, a expressão <code class="language-c"><span style="color: #666666">13</span> <span style="color: #666666">/</span> <span style="color: #666666">5</span></code> é avaliada
+como 2, enquanto <code class="language-c"><span style="color: #666666">13</span> <span style="color: #666666">/</span> <span style="color: #666666">5.0</span></code> é 2.6: a primeira tem valores inteiros
+em cada lado, enquanto a segunda tem um número de ponto flutuante à
+direita.
+Observe que, com as versões mais recentes de Python (3.0 e
+posterior), o operador de barra única sempre faz a divisão de ponto
+flutuante.</p>
+</li>
+</ul>
+<h2 id="2-2-tipos-basicos">2.2. Tipos básicos</h2>
+<p>A lista de tipos básicos de C é bastante restrita.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="language-c"><span style="color: #B00040">int</span></code></td>
+<td>para um inteiro</td>
+</tr>
+<tr>
+<td><code class="language-c"><span style="color: #B00040">char</span></code></td>
+<td>para um único caractere</td>
+</tr>
+<tr>
+<td><code class="language-c"><span style="color: #B00040">float</span></code></td>
+<td>para um número de ponto flutuante de precisão simples</td>
+</tr>
+<tr>
+<td><code class="language-c"><span style="color: #B00040">double</span></code></td>
+<td>para um número de ponto flutuante de precisão dupla</td>
+</tr>
+</tbody></table><p>O tipo <code class="language-c"><span style="color: #B00040">int</span></code> é direto. Você também pode criar outros tipos de
+inteiros, usando os tipos <code class="language-c"><span style="color: #B00040">long</span></code> e <code class="language-c"><span style="color: #B00040">short</span></code>. Um variável <code class="language-c"><span style="color: #B00040">long</span></code> reserva pelo menos tantos bits quanto um tipo <code class="language-c"><span style="color: #B00040">int</span></code>, enquanto uma
+variável <code class="language-c"><span style="color: #B00040">short</span></code> reserva menos bits do que um <code class="language-c"><span style="color: #B00040">int</span></code> (ou o mesmo
+número). A linguagem não garante o número de bits para cada um, mas a
+maioria dos compiladores atuais usa 32 bits para um <code class="language-c"><span style="color: #B00040">int</span></code>, o que
+permite números de até 2,15 × 10<sup>9</sup> . Isso é suficiente para a
+maioria dos propósitos e, de todo modo, muitos compiladores também usam
+32 bits para <code class="language-c"><span style="color: #B00040">long</span>.</code> Assim, tipicamente as pessoas usam <code class="language-c"><span style="color: #B00040">int</span></code> em
+seus programas.</p>
+<p>O tipo <code class="language-c"><span style="color: #B00040">char</span></code> também é simples: representa um único caractere, como um
+símbolo de letra ou pontuação. Você pode representar um caractere
+individual em um programa colocando o caractere entre aspas simples:
+<code class="language-c">digit0 <span style="color: #666666">=</span> <span style="color: #BA2121">'0'</span>;</code> guardaria o caractere de dígito zero na variável
+variável <code class="language-c">digit0</code> de tipo <code class="language-c"><span style="color: #B00040">char</span></code>.</p>
+<p>Entre os dois tipos de ponto flutuante existentes, <code class="language-c"><span style="color: #B00040">float</span> </code>e
+<code class="language-c"><span style="color: #B00040">double</span></code>, a maioria dos programadores de hoje utilizam quase que
+exclusivamente o tipo <code class="language-c"><span style="color: #B00040">double</span></code>. Esses tipos são para números que podem
+ter valores decimais neles, como 2,5, ou para números maiores que um
+<code class="language-c"><span style="color: #B00040">int</span></code> pode conter, como 6,02 × 10<sup>23</sup> . Os dois tipos diferem
+no fato de que um <code class="language-c"><span style="color: #B00040">float</span></code> normalmente utiliza apenas 32 bits de
+armazenamento, enquanto <code class="language-c"><span style="color: #B00040">double</span> </code>normalmente utiliza 64 bits. A
+técnica de armazenamento de 32 bits permite um intervalo de números
+mais estreito (de −3,4 × 10<sup>38</sup> a 3,4 × 10<sup>38</sup> ) e —
+mais problemático numericamente — com cerca de 7 dígitos significativos.
+Assim, uma variável do tipo <code class="language-c"><span style="color: #B00040">float</span></code> não pode guardar precisamente o
+número 281.421.906 (que foi a população dos EUA em 2000 segundo o
+censo), porque representar esse número requer nove dígitos
+significativos; se atribuíssemos esse número a uma variável <code class="language-c"><span style="color: #B00040">float</span></code>,
+obteríamos apenas uma aproximação, como 281,421,920. Por outro lado, a
+técnica de armazenamento de 64 bits permite uma faixa mais ampla de
+números (−1,7 × 10<sup>308</sup> a 1,7 × 10<sup>308</sup> ) e
+aproximadamente 15 dígitos significativos. Isso é mais adequado para
+situações diversas e o gasto extra de 32 bits de armazenamento raramente
+é relevante, portanto utilizar <code class="language-c"><span style="color: #B00040">double</span></code> é quase sempre preferível.</p>
+<p>C <em>não</em> possui um tipo booleano para representar valores
+verdadeiro/falso. Isso tem implicações importantes para uma instrução
+como <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code>, onde você precisa de um teste para determinar se deve
+executar um grupo de instruções. A abordagem utilizada em C é tratar o
+inteiro <code class="language-c"><span style="color: #666666">0</span></code> como <em>falso</em> e todos os outros valores inteiros como
+<em>verdadeiros</em>. O seguinte seria um programa C válido.</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>() {
+    <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+    <span style="color: #008000; font-weight: bold">if</span> (i) {
+        printf(<span style="color: #BA2121">"in if</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>);
+    } <span style="color: #008000; font-weight: bold">else</span> {
+        printf(<span style="color: #BA2121">"in else</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>);
+    }
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre><p>Este programa compilaria e imprimiria <code class="language-c">in <span style="color: #008000; font-weight: bold">if</span></code> quando executado, já que o
+valor da expressão <code class="language-c">i</code> vale 5, o que é diferente de <code class="language-c"><span style="color: #666666">0</span></code> e, portanto, o teste
+da instrução <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code> é bem-sucedida.</p>
+<p>Operadores em C cujos resultados devem ser valores booleanos (como <code class="language-c"><span style="color: #666666">==</span></code>,
+<code class="language-c"><span style="color: #666666">&amp;&amp;</span></code> e <code class="language-c"><span style="color: #666666">||</span></code>), na verdade, calculam valores <code class="language-c"><span style="color: #B00040">int</span></code>. Em particular, esses
+operadores devolvem <code class="language-c"><span style="color: #666666">1</span></code> para representar <em>verdadeiro</em> e <code class="language-c"><span style="color: #666666">0</span></code> para representar
+<em>falso</em>.</p>
+<p>Esta peculiaridade — de que C considera todos os números inteiros
+diferentes de zero como valor verdadeiro — é geralmente considerada um
+erro. Assim, a maioria dos programadores experientes <strong>nunca</strong> realizam
+operações aritméticas (soma, subtração, etc.) com o resultado de
+expressões condicionais (operações booleanas, comparações, etc.)</p>
+<h2 id="2-3-chaves">2.3. Chaves</h2>
+<p>Várias instruções, como a instrução <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code>, incluem um corpo que pode
+conter várias outras instruções. Normalmente, o corpo é cercado por
+chaves ('<code class="language-c">{</code>' e '<code class="language-c">}</code>') para indicar sua extensão. Mas quando o corpo contém
+apenas uma instrução, as chaves são opcionais. Assim, poderíamos
+encontrar o máximo de dois números sem usar chaves, desde que o corpos
+tanto de <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code> quanto de <code class="language-c"><span style="color: #008000; font-weight: bold">else</span></code> contenham apenas uma única instrução,
+cada.</p>
+<pre class="highlightlanguage-c"><span style="color: #008000; font-weight: bold">if</span> (first <span style="color: #666666">&gt;</span> second)
+    max <span style="color: #666666">=</span> first;
+<span style="color: #008000; font-weight: bold">else</span>
+    max <span style="color: #666666">=</span> second;
+</pre><p>(Também poderíamos incluir chaves em apenas um dos dois corpos, contanto
+que esse corpo contenha apenas uma instrução.)</p>
+<p>Os programadores C usam isso com bastante frequência quando querem que
+um de vários teste de <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code> seja executado. Um exemplo disso foi dado
+no código da fórmula quadrática acima. Podemos calcular o número de
+soluções da seguinte forma:</p>
+<pre class="highlightlanguage-c">disc <span style="color: #666666">=</span> b <span style="color: #666666">*</span> b <span style="color: #666666">-</span> <span style="color: #666666">4</span> <span style="color: #666666">*</span> a <span style="color: #666666">*</span> c;
+<span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {
+    num_sol <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+} <span style="color: #008000; font-weight: bold">else</span> {
+    <span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+    } <span style="color: #008000; font-weight: bold">else</span> {
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">2</span>;
+    }
+}
+</pre><p>Observe que a cláusula <code class="language-c"><span style="color: #008000; font-weight: bold">else</span></code> aqui contém apenas uma instrução (uma
+instrução <code class="language-c"><span style="color: #008000; font-weight: bold">if</span>...<span style="color: #008000; font-weight: bold">else</span></code>), então podemos omitir as chaves ao redor dela.
+Podemos então escrever:</p>
+<pre class="highlightlanguage-c">disc <span style="color: #666666">=</span> b <span style="color: #666666">*</span> b <span style="color: #666666">-</span> <span style="color: #666666">4</span> <span style="color: #666666">*</span> a <span style="color: #666666">*</span> c;
+<span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {
+    num_sol <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+} <span style="color: #008000; font-weight: bold">else</span>
+    <span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+    } <span style="color: #008000; font-weight: bold">else</span> {
+        num_sol <span style="color: #666666">=</span> <span style="color: #666666">2</span>;
+    }
+</pre><p>Mas essa situação surge com freqüência suficiente para que os
+programadores C sigam uma regra especial para recuar nesse caso — uma
+regra que permite que todos os casos sejam escritos no mesmo nível de
+recuo.</p>
+<pre class="highlightlanguage-c">disc <span style="color: #666666">=</span> b <span style="color: #666666">*</span> b <span style="color: #666666">-</span> <span style="color: #666666">4</span> <span style="color: #666666">*</span> a <span style="color: #666666">*</span> c;
+<span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) {
+    num_sol <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+} <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (disc <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+    num_sol <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+} <span style="color: #008000; font-weight: bold">else</span> {
+    num_sol <span style="color: #666666">=</span> <span style="color: #666666">2</span>;
+}
+</pre><p>Como isso é viável usando as regras de chaveamento de C, C não inclui um
+paralelo da cláusula <code class="language-c">elif</code> que você encontra em Python. Você pode juntar
+quantas combinações <code class="language-c"><span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span></code> desejar.</p>
+<p>Além desta situação em particular, eu recomendo que você sempre inclua
+as chaves, mesmo que só haja uma instrução. À medida em que você
+continua trabalhando em um programa, geralmente descobre que deseja
+incluir instruções adicionais no corpo de um <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code> e ter as chaves lá
+já lhe poupa o trabalho de adicioná-las mais tarde. E torna mais fácil
+manter o controle das chaves, já que cada nível de indentação requer uma
+chave direita de fechamento.</p>
+<h2 id="2-4-instrucoes">2.4. Instruções</h2>
+<p>Vimos quatro tipos de instruções, três das quais correspondem de perto
+com as de Python.</p>
+<ol>
+<li>
+<p><code class="language-c"><span style="color: #B00040">int</span> x;</code></p>
+<p>Nós já discutimos declarações de variáveis ​​na Seção 1.2 . Elas não têm
+paralelo em Python.</p>
+</li>
+<li>
+<p><code class="language-c">x <span style="color: #666666">=</span> y <span style="color: #666666">+</span> z;</code> ou <code class="language-c">printf(<span style="color: #BA2121">"%d"</span>, x)</code>;</p>
+<p>Você pode ter uma expressão como uma instrução. Tecnicamente, a expressão
+poderia ser <code class="language-c">x <span style="color: #666666">+</span> <span style="color: #666666">3</span></code>, mas tal instrução não serve para nada: pedimos ao
+computador para adicionar <code class="language-c">x</code> e <code class="language-c"><span style="color: #666666">3</span></code>, mas não pedimos que nada aconteça com esse
+resultado. Quase sempre, as expressões têm uma das duas formas acima: uma
+forma é um operador que altera o valor de uma variável, como o operador de
+atribuição (<code class="language-c">x <span style="color: #666666">=</span> <span style="color: #666666">3</span>;</code>), o operador de atribuição de adição += ou o operador
+de incremento ++. A outra forma de expressão que você vê como uma instrução
+é uma chamada de função, como uma instrução que simplesmente chama a função
+<code class="language-c">printf()</code>.</p>
+</li>
+<li>
+<p><code class="language-c"><span style="color: #008000; font-weight: bold">if</span> (x <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) { printf(<span style="color: #BA2121">"negative"</span>); }</code></p>
+<p>Você pode ter uma instrução <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code>, que funciona de maneira muito
+semelhante à instrução <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code> de Python. A única grande diferença é
+a sintaxe: em C, a condição <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code> de uma instrução deve estar entre
+parênteses, não há dois pontos após a condição e o corpo tem um par
+de chaves que a encerra.</p>
+<p>Como já vimos, C não possui uma cláusula <code class="language-c">elif</code> como em Python; em vez
+disso, os programadores C usam a regra de chave opcional e escrevem
+<code class="language-c"><span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span></code>.</p>
+</li>
+<li>
+<p><code class="language-c"><span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;</code></p>
+<p>Você pode ter uma instrução <code class="language-c"><span style="color: #008000; font-weight: bold">return</span></code> para sair de uma função com
+um determinado valor de retorno. Ou, para uma função sem valor de
+retorno (a que tem tipo de retorno <code class="language-c"><span style="color: #B00040">void</span></code>), você escreveria
+simplesmente <code class="language-c"><span style="color: #008000; font-weight: bold">return</span>;</code>.</p>
+</li>
+</ol>
+<p>Existem mais três tipos de instruções que se correlacionam de perto com
+os equivalentes de Python.</p>
+<ol start="5">
+<li>
+<p><code class="language-c"><span style="color: #008000; font-weight: bold">while</span> (i <span style="color: #666666">&gt;=</span> <span style="color: #666666">0</span>) { i<span style="color: #666666">--</span>; }</code></p>
+<p>A instrução <code class="language-c"><span style="color: #008000; font-weight: bold">while</span></code> funciona de maneira idêntica à de Python, embora a
+sintaxe seja diferente da mesma maneira que a sintaxe <code class="language-c"><span style="color: #008000; font-weight: bold">if</span></code> é diferente.</p>
+<pre class="highlightlanguage-c"><span style="color: #008000; font-weight: bold">while</span> (i <span style="color: #666666">&gt;=</span> <span style="color: #666666">0</span>) {
+    printf(<span style="color: #BA2121">"%d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>, i);
+    i<span style="color: #666666">--</span>;
+}
+</pre><p>Novamente, a expressão de teste requer um par de parênteses em torno dela,
+não há dois pontos e usamos chaves para cercar o corpo do laço.</p>
+</li>
+<li>
+<p><code class="language-c"><span style="color: #008000; font-weight: bold">break</span>;</code></p>
+<p>Como em Python, a instrução <code class="language-c"><span style="color: #008000; font-weight: bold">break</span></code> sai imediatamente do laço mais interno
+em que ela é encontrada. Claro, a instrução tem um ponto e vírgula a seguir.</p>
+</li>
+<li>
+<p><code class="language-c"><span style="color: #008000; font-weight: bold">continue</span>;</code></p>
+<p>Também como em Python, a instrução <code class="language-c"><span style="color: #008000; font-weight: bold">continue</span></code> pula para o final do laço mais
+interno em que é encontrado e testa se deve repetir o laço novamente. Ele
+tem um ponto-e-vírgula também.</p>
+</li>
+</ol>
+<p>E existem dois tipos de instruções que não possuem um bom paralelo em
+Python.</p>
+<ol start="8">
+<li>
+<p><code class="language-c"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> <span style="color: #666666">10</span>; i<span style="color: #666666">++</span>) {...</code></p>
+<p>Embora Python também tenha uma instrução <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code>, seu propósito e
+sua sintaxe têm pouca semelhança com a instrução <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> de C. Em C,
+a palavra-chave <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> é seguida por um par de parênteses que
+contém três partes separadas por ponto e vírgula.</p>
+<pre class="highlightlanguage-c"><span style="color: #008000; font-weight: bold">for</span> (inicialização; teste; atualização)
+</pre><p>A intenção do laço <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> de C é permitir passar uma variável por uma série
+de números, como contar de 0 a 9. A parte antes do primeiro ponto e vírgula
+(<em>inicialização</em>) é executada assim que a instrução <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> é atingida; é para
+inicializar a variável que contará. A parte entre os dois pontos e vírgulas
+(<em>teste</em>) é avaliada antes de cada iteração para determinar se a iteração
+deve ser repetida. E a parte seguinte ao último ponto e vírgula
+(<em>atualização</em>) é avaliada no final de cada iteração para atualizar a
+variável de contagem para a iteração a seguir.</p>
+<p>Na prática, os laços <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> são usados ​​com mais freqüência para contar <em>n</em>
+iterações. O idioma padrão para isso é o seguinte.</p>
+<pre class="highlightlanguage-c"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+    corpo
+}
+</pre><p>Aqui temos uma variável de contador <code class="language-c">i</code> cujo valor começa em 0. Com cada
+iteração, testamos se <code class="language-c">i</code> alcança n ou não; e, se não, então nós executamos o
+corpo <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> da instrução e então executamos a atualização <code class="language-c">i<span style="color: #666666">++</span></code> de forma que <code class="language-c">i</code>
+vá para o inteiro seguinte. O resultado é que o corpo é executado para cada
+valor de <code class="language-c">i</code>, começando em 0 até n - 1.</p>
+<p>Mas você também pode usar um laço <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> para outros propósitos. No exemplo a
+seguir, exibimos as potências de 2 até 512. Observe como a parte de
+atualização da instrução <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> foi alterada para <code class="language-c">p <span style="color: #666666">*=</span> <span style="color: #666666">2</span></code>.</p>
+<pre class="highlightlanguage-c"><span style="color: #008000; font-weight: bold">for</span> (p <span style="color: #666666">=</span> <span style="color: #666666">1</span>; p <span style="color: #666666">&lt;=</span> <span style="color: #666666">512</span>; p <span style="color: #666666">*=</span> <span style="color: #666666">2</span>) {
+    printf(<span style="color: #BA2121">"%d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>, p);
+}
+</pre></li>
+<li>
+<p><code class="language-c"><span style="color: #008000; font-weight: bold">switch</span> (grade) { <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'A'</span><span style="color: #666666">:</span>...</code></p>
+<p>A instrução <code class="language-c"><span style="color: #008000; font-weight: bold">switch</span></code> não tem nenhum equivalente em Python, mas é
+essencialmente equivalente a uma forma particular de uma instrução
+da forma <code class="language-c"><span style="color: #008000; font-weight: bold">if</span>... elif... elif... <span style="color: #008000; font-weight: bold">else</span></code> onde cada um dos
+testes são feitos para diferentes valores de uma mesma variável.</p>
+<p>Uma instrução <code class="language-c"><span style="color: #008000; font-weight: bold">switch</span></code> é útil quando você tem vários blocos de código
+possíveis, um dos quais deve ser executado com base no valor de uma
+expressão específica. Aqui está um exemplo clássico de instrução <code class="language-c"><span style="color: #008000; font-weight: bold">switch</span></code>:</p>
+<pre class="highlightlanguage-c"><span style="color: #008000; font-weight: bold">switch</span> (letter_grade) {
+<span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'A'</span><span style="color: #666666">:</span>
+    gpa <span style="color: #666666">+=</span> <span style="color: #666666">4</span>;
+    credits <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+    <span style="color: #008000; font-weight: bold">break</span>;
+<span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'B'</span><span style="color: #666666">:</span>
+    gpa <span style="color: #666666">+=</span> <span style="color: #666666">3</span>;
+    credits <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+    <span style="color: #008000; font-weight: bold">break</span>;
+<span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'C'</span><span style="color: #666666">:</span>
+    gpa <span style="color: #666666">+=</span> <span style="color: #666666">2</span>;
+    credits <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+    <span style="color: #008000; font-weight: bold">break</span>;
+<span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'D'</span><span style="color: #666666">:</span>
+    gpa <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+    credits <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+    <span style="color: #008000; font-weight: bold">break</span>;
+<span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'W'</span><span style="color: #666666">:</span>
+    <span style="color: #008000; font-weight: bold">break</span>;
+<span style="color: #008000; font-weight: bold">default</span><span style="color: #666666">:</span>
+    credits <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+}
+</pre><p>Dentro dos parênteses após a palavra-chave <code class="language-c"><span style="color: #008000; font-weight: bold">switch</span></code>, temos uma expressão
+cujo valor deve ser um caractere ou inteiro. O computador avalia essa
+expressão e desce para uma das palavras-chaves <code class="language-c"><span style="color: #008000; font-weight: bold">case</span></code> dependente do valor
+dessa expressão. Se o valor é o caractere <em>A</em>, então o primeiro bloco é
+executado (<code class="language-c">gpa <span style="color: #666666">+=</span> <span style="color: #666666">4</span>; credits <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;</code>); se for <em>B</em> , então o segundo bloco é
+executado; etc. Se o valor não for nenhum dos caracteres (como um <em>F</em>),
+então o bloco após a palavra-chave <code class="language-c"><span style="color: #008000; font-weight: bold">default</span></code> é executado.</p>
+<p>A instrução <code class="language-c"><span style="color: #008000; font-weight: bold">break</span></code> no final de cada bloco é um detalhe crucial: se a
+instrução <code class="language-c"><span style="color: #008000; font-weight: bold">break</span></code> for omitida, o computador continuará no seguinte bloco. Em
+nosso exemplo acima, se omitimos todas as instruções <code class="language-c"><span style="color: #008000; font-weight: bold">break</span></code>, uma nota <em>A</em>
+levaria o computador a executar não apenas o caso <em>A</em>, mas também o <em>B</em>,
+<em>C</em>, <em>D</em>, <em>W</em> e caso <code class="language-c"><span style="color: #008000; font-weight: bold">default</span></code>. O resultado seria que <code class="language-c">gpa</code> aumentaria em <code class="language-c"><span style="color: #666666">4</span> <span style="color: #666666">+</span> <span style="color: #666666">3</span> <span style="color: #666666">+</span> <span style="color: #666666">2</span> <span style="color: #666666">+</span> <span style="color: #666666">1</span> <span style="color: #666666">=</span> <span style="color: #666666">10</span> </code>, enquanto <code class="language-c">credits</code> aumentaria em 5. Ocasionalmente, você
+realmente deseja que o computador continue para o próximo caso (chamado de
+“<em>fall-through</em>”) e assim você omite uma instrução <code class="language-c"><span style="color: #008000; font-weight: bold">break</span></code>; mas na prática
+você quase sempre quer uma instrução <code class="language-c"><span style="color: #008000; font-weight: bold">break</span></code> no final de cada caso.</p>
+<p>Há uma exceção importante em que fall-through é bastante comum: às vezes,
+você deseja que o mesmo código seja aplicado a dois valores diferentes. Por
+exemplo, se quiséssemos que nada acontecesse se a nota fosse <em>P</em> ou <em>W</em> ,
+então poderíamos incluir <code class="language-c"><span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'P'</span><span style="color: #666666">:</span></code> um pouco antes de <code class="language-c"><span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'W'</span><span style="color: #666666">:</span></code>,
+sem nenhum código intermediário.</p>
+</li>
+</ol>
+<h2 id="2-5-vetores">2.5. Vetores</h2>
+<p>Python suporta muitos tipos que combinam os tipos atômicos básicos em um
+grupo: tuplas, listas, cadeias de caracteres, dicionários, conjuntos.</p>
+<p>O suporte de C é muito mais rudimentar: O <em>único</em> tipo composto é o
+<strong>vetor</strong>, que é semelhante à lista de Python, exceto que um vetor em C
+não pode crescer ou encolher — seu tamanho é fixado no momento da
+criação. Você pode declarar e acessar um vetor da seguinte maneira.</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">double</span> pops[<span style="color: #666666">50</span>];
+pops[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">897934</span>;
+pops[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> pops[<span style="color: #666666">0</span>] <span style="color: #666666">+</span> <span style="color: #666666">11804445</span>;
+</pre><p>Neste exemplo, criamos um vetor contendo 50 variáveis do tipo
+<code class="language-c"><span style="color: #B00040">double</span></code>. As variáveis são indexados de 0 a 49.</p>
+<p>C não tem suporte para acessar o tamanho de um vetor depois de criado;
+ou seja, não há nada análogo ao <code class="language-c">len(pops)</code> de Python ou ao <code class="language-c">pops.length</code> de
+Java.</p>
+<p>Um ponto importante em relação aos vetores: o que acontece se você
+acessar um índice de vetor fora do vetor, como acessar <code class="language-c">pops[<span style="color: #666666">50</span>]</code> ou
+<code class="language-c">pops[<span style="color: #666666">-100</span>]</code>? Com Python ou Java, isso terminará o programa com uma
+mensagem amigável apontando para a linha com a falha e dizendo que o
+programa foi além dos limites do vetor. C não é tão amigável. Quando
+você acessa além dos limites de um vetor, ele o faz cegamente.</p>
+<p>Isso pode levar a um comportamento peculiar. Por exemplo, considere o
+programa a seguir.</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>() {
+    <span style="color: #B00040">int</span> i;
+    <span style="color: #B00040">int</span> vals[<span style="color: #666666">5</span>];
+
+    <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;=</span> <span style="color: #666666">5</span>; i<span style="color: #666666">++</span>) {
+        vals[i] <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+    }
+    printf(<span style="color: #BA2121">"%d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>, i);
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre><p>Alguns sistemas (incluindo uma instalação do Linux que encontrei) guardariam <code class="language-c">i</code>
+na memória logo após o vetor vals; assim, quando i atinge 5 e o computador
+executa <code class="language-c">vals[i] <span style="color: #666666">=</span> <span style="color: #666666">0</span></code>, ele de fato redefine a memória correspondente a <code class="language-c">i</code>
+para <code class="language-c"><span style="color: #666666">0</span></code>. Como resultado, o laço <code class="language-c"><span style="color: #008000; font-weight: bold">for</span></code> foi reinicializado e o programa passa pelo
+laço novamente, e novamente, repetidamente. O programa nunca alcança a chamada
+de função printf e o programa nunca termina.</p>
+<p>Em programas mais complicados, a falta de checagem de limites de vetor
+pode levar a bugs muito difíceis, onde o valor de uma variável muda
+misteriosamente em centenas de funções e você como programador deve
+determinar onde um índice do vetor foi acessado fora dos limites. Este é
+o tipo de bug que leva muito tempo para descobrir e reparar.</p>
+<p>É por isso que você deve considerar as mensagens de erro fornecidas por
+Python (ou Java) como extraordinariamente amigáveis: não apenas informa
+a causa de um problema, mas também informa exatamente qual linha do
+programa estava com defeito. Isso economiza muito tempo de depuração.</p>
+<p>De vez em quando, você verá uma falha no programa em C, com uma mensagem
+como “falha de segmentação” ou “erro de barramento”. Não será útil
+incluir qualquer indicação de qual parte do programa é a culpa: tudo que
+você consegue são aquelas essas duas palavras. Esses erros geralmente
+significam que o programa tentou acessar um local de memória inválido.
+Isso pode indicar uma tentativa de acessar um índice de vetor inválido,
+mas normalmente o índice precisa estar bem fora dos limites para que
+isso ocorra. (Em geral, isso indica uma tentativa de fazer referência a
+um ponteiro não inicializado ou a um ponteiro NULL, que discutiremos
+mais adiante.)</p>
+<h2 id="2-6-comentarios">2.6. Comentários</h2>
+<p>No projeto original de C, todos os comentários começam com uma barra
+seguida por um asterisco (<code class="language-c"><span style="color: #408080; font-style: italic">/*</span></code>) e terminam com um asterisco seguido por
+uma barra (<code class="language-c"><span style="border: 1px solid #FF0000">*/</span></code>). O comentário pode abranger várias linhas.</p>
+<pre class="highlightlanguage-c"><span style="color: #408080; font-style: italic">/* gcd - returns the greatest common</span>
+<span style="color: #408080; font-style: italic"> * divisor of its two parameters */</span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">gcd</span>(<span style="color: #B00040">int</span> a, <span style="color: #B00040">int</span> b) {
+</pre><p>(O asterisco na segunda linha é ignorado pelo compilador. No entanto, a
+maioria dos programadores o incluiria, porque parece mais bonito e
+também porque indica a um leitor humano que o comentário está sendo
+continuado a partir da linha anterior.)</p>
+<p>Embora este comentário em múltiplas linhas tenha sido o único comentário
+incluído originalmente em C, o C++ introduziu um comentário em uma única
+linha que provou ser tão útil que a maioria dos compiladores C atuais
+também o suportam. Começa com dois caracteres de barra (<code class="language-c"><span style="color: #408080; font-style: italic">//</span></code>) e vai para
+o final da linha.</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">int</span> <span style="color: #0000FF">gcd</span>(<span style="color: #B00040">int</span> a, <span style="color: #B00040">int</span> b) {
+  <span style="color: #008000; font-weight: bold">if</span> (b <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+    <span style="color: #008000; font-weight: bold">return</span> a;
+  } <span style="color: #008000; font-weight: bold">else</span> {
+    <span style="color: #408080; font-style: italic">// recurse if b != 0</span>
+    <span style="color: #008000; font-weight: bold">return</span> gcd(b, a <span style="color: #666666">%</span> b);
+  }
+}
+</pre><h1 id="3-bibliotecas">3. Bibliotecas</h1>
+<p>Tendo discutido as funções internas, agora nos voltamos para discutir
+questões relacionadas a funções e separar um programa em vários
+arquivos.</p>
+<h2 id="3-1-prototipos-de-funcao">3.1. Protótipos de função</h2>
+<p>Em C, uma função deve ser declarada acima do local onde você a usa. No
+programa C da Figura 2, definimos a função <code class="language-c">gcd()</code> primeiro e depois a
+função <code class="language-c">main()</code>. Isso é significativo: se trocássemos as funções <code class="language-c">gcd()</code> e
+<code class="language-c">main()</code>, o compilador iria reclamar em <code class="language-c">main()</code> que a função <code class="language-c">gcd()</code> não está
+declarada. Isso é porque C presume que um compilador lê um programa de
+cima para baixo: no momento em que chega a <code class="language-c">main()</code>, ele não foi informado
+sobre uma função <code class="language-c">gcd()</code> e, portanto, acredita que não existe tal função.</p>
+<p>Isso gera um problema, especialmente em programas maiores que abrangem
+vários arquivos, em que as funções em um arquivo precisarão chamar
+funções em outro. Para contornar esse problema, C fornece a noção de
+um <strong>protótipo de função</strong>, onde escrevemos o cabeçalho da função mas
+omitimos a definição do corpo.</p>
+<p>Por exemplo, digamos que queremos quebrar nosso programa C em dois
+arquivos: o primeiro arquivo, <code class="language-c">math.c</code>, conterá a função <code class="language-c">gcd()</code> e o segundo
+arquivo, <code class="language-c">main.c</code>, conterá a função <code class="language-c">main()</code>. O problema com isso é que,
+quando compilarmos main.c, o compilador não saberá sobre a função <code class="language-c">gcd()</code>
+que está tentando chamar.</p>
+<p>Uma solução é incluir um protótipo de função em main.c.</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">int</span> <span style="color: #0000FF">gcd</span>(<span style="color: #B00040">int</span> a, <span style="color: #B00040">int</span> b);
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>() {
+    printf(<span style="color: #BA2121">"GCD: %d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>,
+        gcd(<span style="color: #666666">24</span>, <span style="color: #666666">40</span>));
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre><p>A linha <code class="language-c"><span style="color: #B00040">int</span> gcd...</code> é o protótipo da função. Você pode ver que ela
+começa da mesma forma que uma definição de função começa, mas nós
+simplesmente colocamos um ponto-e-vírgula onde o corpo da função
+normalmente estaria. Ao fazer isso, estamos declarando que a função será
+eventualmente definida, mas ainda não a definimos. O compilador aceita
+isso e obedientemente compila o programa sem reclamações.</p>
+<h2 id="3-2-arquivos-de-cabecalho">3.2. Arquivos de cabeçalho</h2>
+<p>Programas maiores que abrangem vários arquivos freqüentemente contêm
+muitas funções que são usadas muitas vezes em muitos arquivos
+diferentes. Seria doloroso repetir cada protótipo de função em todos os
+arquivos que usam a função. Então, criamos um arquivo — chamado de
+<strong>arquivo de cabeçalho</strong> — que contém cada protótipo escrito apenas uma
+vez (e possivelmente algumas informações compartilhadas adicionais) e
+então podemos nos referir a esse arquivo de cabeçalho em cada
+código-fonte que deseja os protótipos. O arquivo de protótipos é
+chamado de arquivo de cabeçalho, pois contém as “cabeças” de várias
+funções. Convencionalmente, os arquivos de cabeçalho usam o prefixo
+<code class="language-c">.h</code>, ao invés do prefixo <code class="language-c">.c</code> usado para os códigos-fontes C.</p>
+<p>Por exemplo, poderíamos colocar o protótipo para a nossa função <code class="language-c">gcd()</code> em
+um arquivo de cabeçalho chamado <code class="language-c">math.h</code>.</p>
+<pre class="highlightlanguage-c"><span style="color: #B00040">int</span> <span style="color: #0000FF">gcd</span>(<span style="color: #B00040">int</span> a, <span style="color: #B00040">int</span> b);
+</pre><p>Podemos usar um tipo especial de linha começando com <code class="language-c"><span style="color: #BC7A00">#include</span></code> para
+incorporar esse arquivo de cabeçalho no topo da <code class="language-c">main.c</code>.</p>
+<pre class="highlightlanguage-c"><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;stdio.h&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">"math.h"</span><span style="color: #BC7A00"></span>
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>() {
+    printf(<span style="color: #BA2121">"GCD: %d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>,
+        gcd(<span style="color: #666666">24</span>, <span style="color: #666666">40</span>));
+    <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre><p>Este exemplo em particular não é muito convincente, mas imagine uma
+biblioteca que consiste em dezenas de funções, que são usadas em dezenas
+de arquivos: de repente, a economia de tempo de ter apenas um único
+protótipo para cada função em um arquivo de cabeçalho começa a fazer
+sentido.</p>
+<p>A linha <code class="language-c"><span style="color: #BC7A00">#include</span></code> é um exemplo de uma diretiva para o
+<strong>pré-processador</strong> de C, para o qual o compilador C envia cada
+programa antes de compilá-lo. Um programa pode conter comandos
+(<strong>diretivas</strong>) informando ao pré-processador para manipular o texto do
+programa que o compilador realmente processa. A diretiva <code class="language-c"><span style="color: #BC7A00">#include</span></code>
+informa ao pré-processador para substituir a linha <code class="language-c"><span style="color: #BC7A00">#include</span></code> pelo
+conteúdo do arquivo especificado.</p>
+<p>Você deve ter notado que colocamos stdio.h entre colchetes angulares,
+enquanto <code class="language-c">math.h</code> está entre aspas duplas. Os colchetes angulares são para
+arquivos de cabeçalho padrão — arquivos especificados junto com a
+especificação da linguagem C. As aspas são para arquivos de cabeçalho
+personalizados que podem ser encontrados no mesmo diretório dos
+códigos-fontes.</p>
+<h2 id="3-3-constantes">3.3. Constantes</h2>
+<p>Outra diretiva de pré-processador particularmente útil é a diretiva
+<code class="language-c"><span style="color: #BC7A00">#define</span></code>. Ela diz ao pré-processador para substituir todas as
+ocorrências futuras de algum palavra por outra.</p>
+<pre class="highlightlanguage-c"><span style="color: #BC7A00">#define PI 3.14159</span>
+</pre><p>Neste fragmento, dizemos ao pré-processador que, para o resto do
+programa, ele deveria substituir cada ocorrência de <code class="language-c">PI</code> por <code class="language-c"><span style="color: #666666">3.14159</span></code>.
+Suponha que mais tarde no programa exista a seguinte linha:</p>
+<pre class="highlightlanguage-c">printf(<span style="color: #BA2121">"area: %f</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>, <span style="color: #666666">3.14159</span> <span style="color: #666666">*</span> r <span style="color: #666666">*</span> r);
+</pre><p>Vendo isso, o pré-processador iria traduzi-lo no seguinte texto para o
+compilador C processar:</p>
+<pre class="highlightlanguage-c">printf(<span style="color: #BA2121">"area: %f</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">"</span>, <span style="color: #666666">3.14159</span> <span style="color: #666666">*</span> r <span style="color: #666666">*</span> r);
+</pre><p>Essa substituição acontece nos bastidores, para que o programador não
+veja a substituição.</p>
+<p>Estes são os princípios básicos de escrever programas em C, dando-lhe o
+suficiente para poder escrever programas razoavelmente úteis. Mas, para
+ser um programador proficiente em C, você precisaria saber sobre
+ponteiros — um tópico que adiaremos a outro momento.</p>
+
+
+        <!-- Navigation buttons -->
+<div role="navigation" class="row justify-content-between">
+
+  <div class="col-12 col-sm-5 col-lg-4">
+  </div>
+
+  <div class="col-12 d-none d-lg-inline-block col-lg-4">
+    <a class="btn btn-secondary w-100" href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/index.html">
+      Voltar
+    </a>
+  </div>
+
+  <div class="col-12 col-sm-5 col-lg-4">
+    <a class="btn btn-primary w-100 mt-1 mt-sm-0" href="https://ic.unicamp.br/~lehilton/mc102qr/python_c/01-lendo-escrevendo.html">
+      Próxima →
+    </a>
+  </div>
+
+</div>      </div>
+    </div>
+</div></article>
+
+<hr>
+
+
+<!-- Footer -->
+<footer>
+  <p class="copyright text-muted">
+    <a href="https://www.ic.unicamp.br/~lehilton/" title="Página pessoal">
+      Copyright © 2020
+    </a>
+  </p>
+</footer>
+<!-- Bootstrap core JavaScript -->
+<script src="./Introdução_files/jquery.min.js"></script>
+<script src="./Introdução_files/bootstrap.bundle.min.js"></script>
+<!-- <script src="../dist/vendor/prism/prism.js"></script> -->
+
+<!-- Custom scripts for this template -->
+<script src="./Introdução_files/main.min.js"></script>
+
+
+
+
+  
+
+</body></html>
